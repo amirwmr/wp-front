@@ -1,0 +1,72 @@
+{
+	"appName": "Wedding OS",
+	"hero": {
+		"title": "Plan, share, and celebrate without the chaos.",
+		"subtitle": "A modern wedding operating system with checklists, guests, RSVPs, a beautiful website builder, and a vendor marketplace built for fast mobile-first experiences.",
+		"ctaPrimary": "Start with your phone number",
+		"ctaSecondary": "View dashboard demo"
+	},
+	"nav": {
+		"home": "Home",
+		"dashboard": "Dashboard",
+		"website": "Website",
+		"guests": "Guests",
+		"checklist": "Checklist",
+		"vendors": "Vendors",
+		"styleGuide": "Style Guide",
+		"login": "Login",
+		"logout": "Logout"
+	},
+	"common": {
+		"loading": "Loading...",
+		"theme": "Theme",
+		"language": "Language",
+		"installApp": "Install app",
+		"pwaReady": "You can install the app from your browser menu.",
+		"offline": "You appear to be offline. Recent pages are cached."
+	},
+	"auth": {
+		"title": "Sign in or create your workspace",
+		"phoneLabel": "Phone number",
+		"otpLabel": "One-time code",
+		"roleCouple": "I'm a Couple",
+		"roleVendor": "I'm a Vendor",
+		"requestCode": "Send code",
+		"verifyCode": "Verify & continue",
+		"changeNumber": "Change number",
+		"subtitle": "Passwordless login with OTP. We’ll text you a code.",
+		"vendorHint": "Vendors will access their portal after verifying the code.",
+		"onboarding": "Complete onboarding"
+	},
+	"dashboard": {
+		"title": "Your wedding workspace",
+		"welcome": "Welcome back",
+		"cards": {
+			"website": "Website builder",
+			"guests": "Guest list & RSVPs",
+			"checklist": "Checklist & tasks",
+			"vendors": "Vendor marketplace",
+			"budget": "Budget snapshot",
+			"pwa": "PWA ready"
+		}
+	},
+	"guests": {
+		"title": "Guest list & RSVPs",
+		"subtitle": "Collect responses, track meal choices, and export anytime."
+	},
+	"checklist": {
+		"title": "Checklist & tasks",
+		"subtitle": "Track every milestone with deadlines and reminders."
+	},
+	"vendors": {
+		"title": "Vendors",
+		"subtitle": "Discover vetted vendors by category, location, and budget."
+	},
+	"website": {
+		"title": "Wedding website builder",
+		"subtitle": "Pick a template, tell your story, and publish instantly."
+	},
+	"styleGuide": {
+		"title": "Design tokens & components"
+	}
+}

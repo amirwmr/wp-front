@@ -1,0 +1,10 @@
+node_modules
+.svelte-kit
+build
+.output
+.git
+*.log
+.env
+.env.*
+npm-debug.log*
+yarn-error.log*

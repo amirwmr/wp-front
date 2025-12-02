@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: compose/production/Dockerfile
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3000
+      PUBLIC_API_BASE_URL: ${PUBLIC_API_BASE_URL:-https://api.example.com}
+      API_INTERNAL_BASE_URL: ${API_INTERNAL_BASE_URL:-https://api.example.com}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE:-true}
+      PUBLIC_AUTH_COOKIE_SECURE: ${PUBLIC_AUTH_COOKIE_SECURE:-true}
+    ports:
+      - '3000:3000'
+    restart: unless-stopped

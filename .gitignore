@@ -1,0 +1,30 @@
+# Node / SvelteKit artifacts
+node_modules/
+frontend/node_modules/
+.svelte-kit/
+frontend/.svelte-kit/
+.vite/
+frontend/.vite/
+dist/
+build/
+frontend/build/
+.vercel/
+frontend/.vercel_build_output/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# Env / editor
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+
+# Misc caches
+.sass-cache/
+.npm/
+.pnp.*/

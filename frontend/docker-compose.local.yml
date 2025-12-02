@@ -1,0 +1,23 @@
+volumes:
+  frontend-node-modules: {}
+
+services:
+  frontend:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host --port 5173"
+    ports:
+      - '5173:5173'
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: 5173
+      PUBLIC_API_BASE_URL: http://localhost:8000
+      API_INTERNAL_BASE_URL: http://host.docker.internal:8000
+      AUTH_COOKIE_SECURE: 'false'
+      PUBLIC_AUTH_COOKIE_SECURE: 'false'
+    volumes:
+      - ./:/app
+      - frontend-node-modules:/app/node_modules
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'

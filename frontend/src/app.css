@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+	:root {
+		/* Light palette */
+		--background: 0 0% 100%;
+		--foreground: 222 47% 11%;
+		--muted: 210 25% 96%;
+		--muted-foreground: 215 16% 47%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 222 47% 11%;
+		--border: 214 32% 92%;
+		--input: 214 32% 92%;
+		--card: 0 0% 100%;
+		--card-foreground: 222 47% 11%;
+		--primary: 334 74% 58%;
+		--primary-foreground: 0 0% 100%;
+		--secondary: 222 14% 90%;
+		--secondary-foreground: 222 47% 11%;
+		--accent: 262 83% 62%;
+		--accent-foreground: 0 0% 100%;
+		--destructive: 0 84% 60%;
+		--destructive-foreground: 0 0% 100%;
+		--ring: 334 74% 58%;
+		--radius: 16px;
+		--font-body: 'Inter', 'Inter var', system-ui, -apple-system, 'Segoe UI', sans-serif;
+		--font-body-rtl: 'Vazirmatn', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	}
+
+	[data-theme='dark'] {
+		/* Dark palette */
+		--background: 222 47% 9%;
+		--foreground: 214 32% 98%;
+		--muted: 220 13% 18%;
+		--muted-foreground: 214 15% 70%;
+		--popover: 222 47% 9%;
+		--popover-foreground: 214 32% 98%;
+		--border: 222 14% 20%;
+		--input: 222 14% 20%;
+		--card: 222 47% 12%;
+		--card-foreground: 214 32% 98%;
+		--primary: 334 74% 62%;
+		--primary-foreground: 0 0% 100%;
+		--secondary: 218 14% 24%;
+		--secondary-foreground: 214 32% 98%;
+		--accent: 262 83% 66%;
+		--accent-foreground: 0 0% 100%;
+		--destructive: 0 84% 60%;
+		--destructive-foreground: 0 0% 100%;
+		--ring: 334 74% 62%;
+		--font-body: 'Inter', 'Inter var', system-ui, -apple-system, 'Segoe UI', sans-serif;
+		--font-body-rtl: 'Vazirmatn', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	}
+
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground antialiased;
+		font-family: var(--font-body);
+	}
+
+	:global(html[dir='rtl'] body) {
+		font-family: var(--font-body-rtl);
+	}
+
+	.rtl {
+		direction: rtl;
+	}
+
+	:focus-visible {
+		@apply outline-none ring-2 ring-primary;
+	}
+}
