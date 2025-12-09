@@ -20,21 +20,15 @@
 
 	let mobileOpen = $state(false);
 	let lang = $state('fa');
-	let baseUser = $state<User | null>(null);
-	let liveUser = $state<User | null>(null);
+	let liveUser = $derived(user);
 
-	$effect(() => {
-		baseUser = user;
-		if (!liveUser) {
-			liveUser = user;
-		}
-	});
+	// liveUser is derived from the prop; store subscription below keeps it synced on client
 
 	const unsub = i18nLocale.subscribe((value) => {
 		lang = value ?? 'fa';
 	});
 	const unsubUser = userStore.subscribe((value) => {
-		liveUser = value ?? baseUser;
+		liveUser = value ?? user;
 	});
 	onDestroy(() => {
 		unsub();

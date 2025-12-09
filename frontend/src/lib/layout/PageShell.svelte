@@ -26,6 +26,8 @@
 	$effect(() => {
 		setContext('apiBase', apiBase);
 	});
+
+	// No global event needed; the header reads from Svelte store and user prop updates via SSR
 </script>
 
 <div
