@@ -12,6 +12,7 @@ from typing import Dict, List, Optional
 REPO_ROOT = Path(__file__).parent
 FRONTEND_DIR = REPO_ROOT / "frontend"
 PACKAGE_JSON = FRONTEND_DIR / "package.json"
+DOCKER_COMPOSE_FILE = FRONTEND_DIR / "docker-compose.local.yml"
 
 
 class CommandError(Exception):
@@ -99,6 +100,61 @@ def check_codex_installed() -> bool:
     """Return True if Codex CLI is available."""
     if shutil.which("codex") is None:
         print("Codex CLI not found. Will ask for a manual commit message.")
+    return False
+
+
+def check_docker_available() -> bool:
+    if shutil.which("docker") is None:
+        return False
+    try:
+        run_command(["docker", "compose", "version"])
+    except CommandError:
+        return False
+    return DOCKER_COMPOSE_FILE.exists()
+
+
+def ensure_docker_up() -> bool:
+    try:
+        run_command(
+            [
+                "docker",
+                "compose",
+                "-f",
+                str(DOCKER_COMPOSE_FILE),
+                "up",
+                "-d",
+                "--remove-orphans",
+            ],
+            cwd=FRONTEND_DIR,
+        )
+        return True
+    except CommandError as e:
+        print(f"docker compose up failed: {e.message}")
+        return False
+
+
+def run_in_docker_npm(script: str) -> bool:
+    try:
+        output = run_command(
+            [
+                "docker",
+                "compose",
+                "-f",
+                str(DOCKER_COMPOSE_FILE),
+                "exec",
+                "frontend",
+                "npm",
+                "run",
+                script,
+            ],
+            cwd=FRONTEND_DIR,
+        )
+        if output:
+            print("\n".join(output))
+        print(f"{script}: completed.")
+        return True
+    except CommandError as e:
+        print(f"{script} failed in docker: {e.message}")
         return False
 
     try:
@@ -172,6 +228,10 @@ def run_npm_script(script: str, scripts: Dict[str, str], label: str) -> bool:
 
     print(f"\nRunning `{script}` ({label})...")
 
+    if check_docker_available():
+        if not ensure_docker_up():
+            return False
+        return run_in_docker_npm(script)
     try:
         output = run_command(["npm", "run", script], cwd=FRONTEND_DIR)
         if output:
@@ -370,3 +430,48 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+def check_docker_available() -> bool:
+    if shutil.which("docker") is None:
+        return False
+    try:
+        run_command(["docker", "compose", "version"])
+    except CommandError:
+        return False
+    return DOCKER_COMPOSE_FILE.exists()
+
+def ensure_docker_up() -> bool:
+    try:
+        run_command([
+            "docker",
+            "compose",
+            "-f",
+            str(DOCKER_COMPOSE_FILE),
+            "up",
+            "-d",
+            "--remove-orphans",
+        ], cwd=FRONTEND_DIR)
+        return True
+    except CommandError as e:
+        print(f"docker compose up failed: {e.message}")
+        return False
+
+def run_in_docker_npm(script: str) -> bool:
+    try:
+        output = run_command([
+            "docker",
+            "compose",
+            "-f",
+            str(DOCKER_COMPOSE_FILE),
+            "exec",
+            "frontend",
+            "npm",
+            "run",
+            script,
+        ], cwd=FRONTEND_DIR)
+        if output:
+            print("\n".join(output))
+        print(f"{script}: completed.")
+        return True
+    except CommandError as e:
+        print(f"{script} failed in docker: {e.message}")
+        return False
